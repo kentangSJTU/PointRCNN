@@ -168,3 +168,11 @@ If you find this work useful in your research, please consider cite:
     year={2019} 
 }
 ```
+
+## Additional Information
+
+This information is non-official, but might be useful for running this code on Anaconda environment. I think these steps are unnecessary for a non-conda environment / self-built PyTorch.
+
+For a raw conda environment, we need to run `conda install gxx_linux-64` to install the G++ compiler.
+
+By default, PyTorch 1.0 is built with CXX11_ABI enabled. However, the CPP extension module for pytorch explicitly add CXX_ABI=0. We may need to modify `~/anaconda3/lib/python3.6/site-packages/torch/utils/cpp_extension.py`, by changing all the `-D_GLIBCXX_USE_CXX11_ABI=0` to `D_GLIBCXX_USE_CXX11_ABI=1`. 
