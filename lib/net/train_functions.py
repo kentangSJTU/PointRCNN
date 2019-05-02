@@ -30,6 +30,7 @@ def model_joint_fn_decorator():
                     input_data[key] = torch.from_numpy(val).contiguous().cuda(non_blocking=True).float()
             if not cfg.RCNN.ROI_SAMPLE_JIT:
                 pts_input = torch.cat((input_data['pts_input'], input_data['pts_features']), dim=-1)
+                pts_input = pts_input.view(-1, pts_input.shape[2], pts_input.shape[3])
                 input_data['pts_input'] = pts_input
 
         ret_dict = model(input_data)
